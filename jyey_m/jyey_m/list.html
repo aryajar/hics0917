@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript">
+        function getTime(){
+            var date = new Date(); //创建时间对象
+            var year = date.getFullYear(); //获取年
+            var month = date.getMonth()+1;//获取月
+            var day = date.getDate(); //获取当日
+            var week = date.getDay(); //获取当前时间的星期
+            var arr = new Array("星期一","星期二","星期三","星期四","星期五","星期六","星期日");//星期
+            var hour = date.getHours();  //获取小时
+            var minute = date.getMinutes();  //获取分钟
+            var second = date.getSeconds(); //获取秒
+            var time = year+"-"+month+"-"+day+" "+arr[week]+" "+hour+((minute<10)?":0":":")+minute+((second<10)?":0":":")+second+((hour>12)?".pm":".am"); //组合时间
+            document.getElementById("clock").value = time
+        }
+        setInterval(getTime,1000);
+        //console.log("当前时间：", getTime())
+
+    </script>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            font-size: 12px;
+        }
+        .tableList{
+            width: 99%;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            margin-top: 18px;
+            margin-left: 0.5%;
+        }
+        .tableList td,th{
+            border: 1px solid #e0e0e0;
+            height: 40px;
+        }
+        .tableList th{
+            background-color: #f0f0f0;
+        }
+        .tableList td{
+            text-align: center;
+        }
+
+        .tableList tr:nth-child(odd){
+            background-color: #ffffff;
+        }
+        .tableList tr:nth-child(even){
+            background-color: #f8f8f8;
+        }
+        .tableList tr:hover{
+            background-color: #e9f2f7;
+        }
+        p{
+            text-align: center;
+            font-family: 微软雅黑;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        video{
+            padding-left: 5px;
+        }
+        source{
+            border-radius: 5px;
+        }
+        a{
+            color: #000000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(function () {
+            var trs = ''
+            for (var i = -12; i <=12 ; i++) {
+                var tr = '<tr>\n' +
+                    '        <td>'+i+'</td>\n' +
+                    '        <td>95.01%</td>\n' +
+                    '        <td>91.32%</td>\n' +
+                    '        <td>96.55%</td>\n' +
+                    '        <td>96.16%</td>\n' +
+                    '        <td>94.12%</td>\n' +
+                    '        <td>96.96</td>\n' +
+                    '        <td>胡歌</td>\n'
+                trs += tr;
+            }
+            $(".thead_trs").html(trs)
+
+        });
+    </script>
+</head>
+<body>
+
+<p style="padding-top: 20px">全院全年手卫生情况分析
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前时间：<input type="text" id="clock" style="width:200px; height:30px; border:none; padding:2px 10px;" readonly="readonly"><br/>
+</span></p>
+<table class="tableList">
+    <thead >
+    <tr>
+        <th>编号</th>
+        <th>全部依从率</th>
+        <th>抽查</th>
+        <th>自查</th>
+        <th>全部正确率</th>
+        <th>抽查</th>
+        <th>自查</th>
+        <th>核准人</th>
+    </tr>
+    </thead>
+    <thead class="thead_trs"></thead>
+</table>
+
+</body>
+</html>

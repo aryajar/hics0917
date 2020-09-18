@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			frame{
+				height: 2000px;
+			}
+		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="UTF-8">
+		<link href="css/bootstrap.min1.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+		<script type="text/javascript" src="js/highcharts.js"></script>
+		<script type="text/javascript" src="js/exporting.js"></script>
+		<script src="js/echarts.min1.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				$(document).ready(function() {
+					var chart = {
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					};
+					var title = {
+						text: '各部不规范占有率'
+					};
+					var tooltip = {
+						pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+					};
+					var plotOptions = {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.name}</b>:  {point.percentage:.1f} %',
+								style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
+							}
+						}
+					};
+					var series= [{
+						type: 'pie',
+						name: 'Browser share',
+						data: [
+							['内科',   26],
+							['外科',       22],
+							['综合科',    12],
+							['门诊部',    12],
+						]
+					}];
+
+					var json = {};
+					json.chart = chart;
+					json.title = title;
+					json.tooltip = tooltip;
+					json.series = series;
+					json.plotOptions = plotOptions;
+					$('#main').highcharts(json);
+				});
+				$('.container').highcharts({
+					chart: {
+					},
+					title: {
+						text: '院感科手卫生规范情况当周分析'
+					},
+					//x轴
+					xAxis: {
+						categories: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天']
+					},
+					tooltip: {
+						formatter: function () {
+							var s;
+							if (this.point.name) { // the pie chart
+								s = '' +
+										this.point.name + ': ' + this.y + '人';
+							} else {
+								s = '' +
+										this.x + ': ' + this.y + '人';
+							}
+							return s;
+						}
+					},
+					labels: {
+						items: [{
+							html: '手卫生周表：',
+							style: {
+								left: '20px',
+								top: '1px',
+								color: 'black'
+							}
+						}]
+					},
+					series: [{
+						type: 'column',
+						name: '规范',
+						data: [6, 6, 6, 6, 6,5,3],
+					}, {
+						type: 'column',
+						name: '不规范',
+						data: [2, 3, 5, 7, 6,5,3],
+					}, {
+						type: 'column',
+						name: '无措施',
+						data: [4, 3, 3, 9, 7,6,2],
+					},{
+						type: 'spline',
+						name: 'Average',
+						data: [2, 3, 5, 7, 6,5,3],
+						marker: {
+							lineWidth: 1,
+							lineColor: Highcharts.getOptions().colors[6],
+							fillColor: 'white'
+						}
+					}, {
+						type: 'pie',
+						name: 'Total consumption',
+						data: [{
+							name: '规范',
+							y: 38,
+							color: Highcharts.getOptions().colors[0] // Jane's color
+						}, {
+							name: '不规范',
+							y: 31,
+							color: Highcharts.getOptions().colors[1] // John's color
+						}, {
+							name: '无措施',
+							y: 34,
+							color: Highcharts.getOptions().colors[2] // Joe's color
+						}],
+						center: [50, 20],
+						size: 50,
+						showInLegend: false,
+						dataLabels: {
+							enabled: false
+						}
+					}]
+				});
+				$('.containers').highcharts({
+					chart: {
+					},
+					title: {
+						text: '不规范行为分析'
+					},
+					//x轴
+					xAxis: {
+						categories: ['三月', '四月', '五月', '六月', '七月','八月','九月']
+					},
+					tooltip: {
+						formatter: function() {
+							var s;
+							if (this.point.name) { // the pie chart
+								s = ''+
+										this.point.name +': '+ this.y +'人';
+							} else {
+								s = ''+
+										this.x  +': '+ this.y + '人';
+							}
+							return s;
+						}
+					},
+					labels: {
+						items: [{
+							html: '不规范分析月表：',
+							style: {
+								left: '26px',
+								top: '1px',
+							}
+						}]
+					},
+					series: [{
+						type: 'column',
+						name: '不规范洗手',
+						data: [6, 6, 6, 6, 6,5,3],
+						color: '#ecc00f'
+					}, {
+						type: 'column',
+						name: '不规范消毒',
+						data: [2, 3, 5, 7, 6,5,3],
+						color: '#FF4500'
+					}, {
+						type: 'column',
+						name: '未采取措施',
+						data: [4, 3, 3, 9, 0,6,2],
+						color: '#40E0D0'
+					}, {
+						type: 'column',
+						name: '未采取措施-戴手套',
+						data: [4, 3, 3, 9, 0,6,2],
+						color: '#40e05b'
+					}]
+				});
+				$('.con').highcharts({
+					chart: {
+					},
+					title: {
+						text: '手卫生情况当月分析'
+					},
+					//x轴
+					xAxis: {
+						categories: ['三月', '四月', '五月', '六月', '七月','八月','九月']
+					},
+					tooltip: {
+						formatter: function() {
+							var s;
+							if (this.point.name) { // the pie chart
+								s = ''+
+										this.point.name +': '+ this.y +'人';
+							} else {
+								s = ''+
+										this.x  +': '+ this.y + '人';
+							}
+							return s;
+						}
+					},
+					labels: {
+						items: [{
+							html: '手卫生月表：',
+							style: {
+								left: '26px',
+								top: '1px',
+							}
+						}]
+					},
+					series: [{
+						type: 'column',
+						name: '规范洗手',
+						data: [6, 6, 6, 6, 6,5,3],
+						color: '#ffd114'
+					}, {
+						type: 'column',
+						name: '规范消毒',
+						data: [2, 3, 5, 7, 6,5,3],
+						color: '#FF4500'
+					}, {
+						type: 'column',
+						name: '不规范行为',
+						data: [4, 3, 3, 9, 0,6,2],
+						color: '#40E0D0'
+					}]
+				});
+				$('.bar').highcharts({
+					chart: {
+					},
+					title: {
+						text: '同期手卫生依从率分析'
+					},
+					//x轴
+					xAxis: {
+						categories: ['三月', '四月', '五月', '六月', '七月','八月','九月']
+					},
+					tooltip: {
+						formatter: function() {
+							var s;
+							if (this.point.name) { // the pie chart
+								s = ''+
+										this.point.name +': '+ this.y +' fruits';
+							} else {
+								s = ''+
+										this.x  +': '+ this.y + '%';
+							}
+							return s;
+						}
+					},
+					series: [/*{
+                    type: 'spline',
+                    name: '移动通信系',
+                    data: [6, 2, 4.3, 6,3.3,4.1,2],
+                    marker: {
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[1],
+                        fillColor: 'white'
+                    }
+                }, {
+                    type: 'spline',
+                    name: '通信工程系',
+                    data: [3, 2.67, 3, 6.33, 3.33,3.3,6.6],
+                    marker: {
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[2],
+                        fillColor: 'white'
+                    }
+                }, */{
+						type: 'spline',
+						name: '2019年',
+						data: [96.41, 96.47, 97.40, 97.07, 88.90,92.99,94.36],
+						marker: {
+							lineWidth: 1,
+							lineColor: Highcharts.getOptions().colors[3],
+							fillColor: 'white'
+						}
+					}, {
+						type: 'spline',
+						name: '2020年',
+						data: [91.71, 93.02, 93.26, 91.88, 93.68,91.47,],
+						marker: {
+							lineWidth: 1,
+							lineColor: Highcharts.getOptions().colors[4],
+							fillColor: 'white'
+						}
+					}]
+				});
+			});
+			window.onresize = function(){
+				var width = $(window).width();
+				if (width < 750){
+					$('#top').css("margin-top","300px")
+				}else {
+					$('#top').css("margin-top","0px")
+				}
+			}
+		</script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				border-radius: 5px;
+			}
+			.col-md-12,.col-md-6,.col-sm-12,.col-sm-6,.col-xs-12{
+				padding-left:1px;
+				padding-right: 1px;
+			}
+			.row{
+				margin-left: 0px;
+				margin-right: 0px;
+			}
+			.container-fluid{
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+			.p_t{
+				text-align: center;
+				color: white;
+				background-color: #000000;
+				padding: 10px;
+				font-size: 16px;
+				font-weight: bold;
+				font-family: 微软雅黑;
+			}
+		</style>
+	</head>
+
+	<frameset frameborder="0" rows="60,*">
+		<frame src="St_Top.html" noresize="noresize" scrolling="no" />
+		<frameset frameborder="0" cols="210,*">
+			<frame src="St_Left.html" noresize="noresize" scrolling="no" />
+			<frame noresize="noresize" scrolling="yes" name="main" />
+<!--			<frame src="StatisticsAll.html" noresize="noresize" scrolling="no" name="main"  />-->
+		</frameset>
+	</frameset>
+
+</html>

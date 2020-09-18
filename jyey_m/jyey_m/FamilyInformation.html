@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--表格-->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+	
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css"/>
+	
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/bootbox.min.js"></script>
+
+</head>
+<body>
+<div class="box" >
+    <div class="title" style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;医院基础信息管理><small>员工管理</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户信息管理</div>
+    <div class="content">
+        <!--搜索输入框及查询、重置按钮-->
+        <div class="container content_width">
+            <div class="person_search">
+                <div class="search_input">
+                    <div class="input-group mb-3">
+                        <span>&nbsp;&nbsp;</span>
+                        <input id="Ktext" type="text" class="form-control" style="width: 200px" placeholder="按用户姓名">&nbsp;&nbsp;
+                        <input id="Ktext1" type="text" class="form-control"  style="width: 200px" placeholder="按手机号码">&nbsp;&nbsp;
+                        <select id="Ktext2" class="selectpicker show-tick" style="width: 200px; height: 33px; font-size: 13px; border-color: #d2d8c8" >
+                            <option value="00"  style="font-size: 12px">角色</option>
+                            <option value="00"  style="font-size: 12px">医疗机构负责人</option>
+                            <option value="01"  style="font-size: 12px">感控科主任</option>
+                            <option value="02"  style="font-size: 12px">专职感控人员</option>
+                            <option value="03" style="font-size: 12px">兼职感控人员</option>
+                            <option value="04" style="font-size: 12px">科室负责人</option>
+                            <option value="05" style="font-size: 12px">护理单元负责人</option>
+                            <option value="06" style="font-size: 12px">感控督导员组长</option>
+                            <option value="07" style="font-size: 12px">感控督导员</option>
+                            <option value="08" style="font-size: 12px">暗访人员</option>
+                            <option value="09" style="font-size: 12px">其他</option>
+                        </select>&nbsp;&nbsp;
+                        <select id="Ktext3" name="isAuth" class="selectpicker show-tick" style="width: 200px; height: 33px; font-size: 13px; border-color: #d2d8c8">
+                            <option value="-1" selected="selected" style="font-size: 12px">按认证审核状态</option>
+                            <option value="7" style="font-size: 12px">未激活</option>
+                            <option value="0" style="font-size: 12px">已激活,未提交审核</option>
+                            <option value="2" style="font-size: 12px">待审核</option>
+                            <option value="1" style="font-size: 12px">审核通过</option>
+                            <option value="3" style="font-size: 12px">审核拒绝</option>
+                            <option value="6" style="font-size: 12px">修改后待审核</option>
+                            <option value="4" style="font-size: 12px">试用中</option>
+                            <option value="5" style="font-size: 12px">被邀请</option>
+                        </select>&nbsp;&nbsp;
+                        <select id="Ktext4" name="positionId" lay-filter="getPostNatureIds" class="selectpicker show-tick" style="width: 200px; height: 33px; font-size: 13px; border-color: #d2d8c8">
+                            <option value="" style="font-size: 12px">--请选择岗位--</option>
+                            <option value="1" style="font-size: 12px">护理</option>
+                            <option value="2" style="font-size: 12px">医疗</option>
+                            <option value="3" style="font-size: 12px">医技</option>
+                            <option value="4" style="font-size: 12px">工勤</option>
+                            <option value="5" style="font-size: 12px">行政管理</option>
+                            <option value="6" style="font-size: 12px">其他</option>
+                        </select>&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="search_input">
+                    <div class="input-group mb-3" hidden>
+                        <span>工号：</span>
+                        <input id="job_num" type="text" class="form-control" placeholder="请输入工号">
+                    </div>
+                </div>
+                <div class="search_input">&nbsp;
+                    <button onclick="tz()" class="btn btn-primary search_btn">选择单元</button>
+                    <script>
+                        function tz(){
+                            window.location.href='xzdy.html';
+                        }
+                    </script>
+                    <button class="btn btn-primary search_btn" type="button" id="search_btn">查询</button>
+                    <button class="btn btn-primary search_btn" type="button" id="back_btn">重置</button>
+                    <button class="btn btn-primary search_btn" type="button" id="export">导出</button>
+                </div>
+            </div>
+            <div class="line"></div>
+        </div>
+        <!--添加按钮及bootstrap的模态框-->
+        <div class="export">
+            <button id="new_add" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#renyuan">
+                <img src="img/add_two.png"/>
+                <span>添加</span>
+            </button>
+            <div class="modal fade" id="renyuan">
+                <div class="modal-dialog modal-lg modal_position">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">添加</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <table id="xztb" class="table">
+                                <!--新修改弹窗的样式-->
+                                <tbody>
+                                <tr>
+                                    <td class="tb_bg"><label for=""><font style="font-size: 14px; color: red;">*</font>员工姓名</label>
+                                    </td>
+                                    <td><input class="userName" type="text" placeholder="请输入姓名"/></td>
+                                    <td class="tb_bg"><label for=""><font style="font-size: 14px; color: red;">*</font>工号</label>
+                                    </td>
+                                    <td><input class="jobNum" type="number" placeholder="请输入工号"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="tb_bg"><label for=""><font style="font-size: 14px; color: red;">*</font>手机号</label>
+                                    </td>
+                                    <td><input class="phoneNum" type="number" placeholder="请输入手机号"/></td>
+                                    <td class="tb_bg"><label for="">角色</label></td>
+                                    <td>
+                                        <select class="form-control select_down" style="font-size: 13px; color: #666;">
+                                            <option value="00"  style="font-size: 12px">医疗机构负责人</option>
+                                            <option value="01"  style="font-size: 12px">感控科主任</option>
+                                            <option value="02"  style="font-size: 12px">专职感控人员</option>
+                                            <option value="03" style="font-size: 12px">兼职感控人员</option>
+                                            <option value="04" style="font-size: 12px">科室负责人</option>
+                                            <option value="05" style="font-size: 12px">护理单元负责人</option>
+                                            <option value="06" style="font-size: 12px">感控督导员组长</option>
+                                            <option value="07" style="font-size: 12px">感控督导员</option>
+                                            <option value="08" style="font-size: 12px">暗访人员</option>
+                                            <option value="09" style="font-size: 12px">其他</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb_bg"><label for="">认证状态</label></td>
+                                    <td>
+                                        <select class="form-control select_down" style="font-size: 13px; color: #666;">
+                                            <option>未激活</option>
+                                            <option>已提交认证,待审核</option>
+                                            <option>审核通过</option>
+                                        </select>
+                                    </td>
+                                    <td class="tb_bg"><label for="">所属单元</label></td>
+                                    <td>
+                                        <select class="form-control select_down" style="font-size: 13px; color: #666;">
+                                            <option>疼痛.康复医学科</option>
+                                            <option>骨一</option>
+                                            <option>骨二</option>
+                                            <option>普外一</option>
+                                            <option>普外二</option>
+                                            <option>外四（消化内科）</option>
+                                            <option>外五（心血管内科）</option>
+                                            <option>介入室</option>
+                                            <option>内一科（消化内科）</option>
+                                            <option>内二科（心血管内科）</option>
+                                            <option>内三科</option>
+                                            <option>内四科</option>
+                                            <option>内五科（老年病、内分泌、心身疾病）</option>
+                                            <option>内六科（神经内科）</option>
+                                            <option>内七科（肾内科）</option>
+                                            <option>儿科</option>
+                                            <option>综合病区</option>
+                                            <option>皮肤科</option>
+                                            <option>口腔科</option>
+                                            <option>眼科</option>
+                                            <option>耳鼻喉科</option>
+                                            <option>门诊外科</option>
+                                            <option>妇科</option>
+                                            <option>产科</option>
+                                            <option>妇产诊疗中心</option>
+                                            <option>心胸外科</option>
+                                            <option>麻醉科.手术室</option>
+                                            <option>麻醉科</option>
+                                            <option>中医科</option>
+                                            <option>急诊科</option>
+                                            <option>重症医学科（ICU）</option>
+                                            <option>呼吸与危重症医学科</option>
+                                            <option>健康体检科</option>
+                                            <option>儿童保健科</option>
+                                            <option>肿瘤诊疗中心</option>
+                                            <option>医学美容整形中心</option>
+                                            <option>放射科</option>
+                                            <option>药剂科</option>
+                                            <option>功能检查科</option>
+                                            <option>血透室</option>
+                                            <option>病理科</option>
+                                            <option>检验科</option>
+                                            <option>营养科</option>
+                                            <option>消毒供应中心</option>
+                                            <option>院感科</option>
+                                            <option>院办</option>
+                                            <option>财务科</option>
+                                            <option>人事科</option>
+                                            <option>信息科</option>
+                                            <option>设备科</option>
+                                            <option>分级诊疗办</option>
+                                            <option>医养照护</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button id="add_btn" type="button" class="btn btn-secondary">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--表格列表-->
+        <table id="tb" class="table">
+            <thead>
+            <tr>
+                <th>员工姓名</th>
+                <th>工号</th>
+                <th>手机号</th>
+                <th>角色</th>
+                <th>认证状态</th>
+                <th>所属单元</th>
+                <th>操作</th>
+                <th><input type="checkbox" style="width: 13px; height: 13px"></th>
+            </tr>
+            </thead>
+            <tbody id="show_tbody">
+            <tr>
+                <td>刘晓晓</td>
+                <td>7652101</td>
+                <td>18066667777</td>
+                <td>感控科主任</td>
+                <td>已激活</td>
+                <td>感控科</td>
+                <td>
+                    <a href="#" class="edit">编辑</a>
+                    <a href="#" class="del">删除</a>
+                </td>
+                <th><input type="checkbox" style="width: 13px; height: 13px"></th>
+            </tr>
+            <tr>
+                <td>陈磊</td>
+                <td>7652102</td>
+                <td>18066668888</td>
+                <td>科室负责人</td>
+                <td>已提交认证,待审核</td>
+                <td>信息科</td>
+                <td>
+                    <a href="#" class="edit">编辑</a>
+                    <a href="#" class="del">删除</a>
+                </td>
+                <th><input type="checkbox" style="width: 13px; height: 13px"></th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="js/mejs.js"></script>
+</body>
+</html>

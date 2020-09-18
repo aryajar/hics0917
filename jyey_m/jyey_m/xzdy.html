@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="keywords" content="jquery2331" />
+    <meta name="description" content="jQuery233" />
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+
+    <!-- 多级联动菜单 -->
+    <style type="text/css">
+        *{margin: 0; padding: 0;}
+        body{ font-size: 12px; }
+        li{ list-style: none;}
+        ul.nav li{ width: 200px; text-align:center;}
+        ul.nav > li{ float: left; margin-right:10px;}
+        ul.nav li h3{height: 40px; line-height: 40px;}
+        ul.nav > li > h3{ background: #72a7ff;}
+        ul.nav > li > ul > li h3{ background: #ffd9d9;}
+        ul.nav > li h3:hover,.choice{ background: #ffc0c0!important;}
+        ul > li > ul{ display: none;}
+        ul > li.on > ul{ display: block;}
+        ul.nav li{ position: relative;}
+        ul.nav > li > ul > li ul{ position:  absolute; top: 0; right: -200px;}
+        ul.nav span.sub{ position: absolute; display: block; right:10px; top: 0; width: 10px; height: 40px; background: url(images/arrows.png) no-repeat center center;}
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("ul.nav li").hover(function(){
+                    $(this).addClass("on");
+
+                },
+                function(){
+                    $(this).removeClass("on");
+
+                })
+        });
+
+        $(document).ready(function() {
+            $("ul.nav li").hover(function(){
+                    $(this).parent("ul").siblings("h3").addClass("choice");
+
+                },
+                function(){
+                    $(this).parent("ul").siblings("h3").removeClass("choice");
+                })
+        });
+
+        $(document).ready(function() {
+            if ($("ul.nav li").find("ul") .html()!="") {
+                $("ul.nav li").parent("ul").siblings("h3").append("<span class='sub'></span>");
+            }
+        });
+    </script>
+
+
+    <style>
+        @media screen and (max-width: 1024px){
+            .site-tree-mobile {
+                display: block!important;
+                position: fixed;
+                z-index: 10000;
+                bottom: 15px;
+                left: 15px;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 2px;
+                text-align: center;
+                background-color: rgba(0,0,0,.7);
+                color: #fff;
+            }
+        }
+        @media screen and (max-width: 1024px){
+            .site-tree-mobile i {
+                font-size: 20px;
+            }
+        }
+
+    </style>
+    <style>
+        *,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .d_container {
+            overflow: hidden;
+        }
+
+        .d_header {
+            text-align: left;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .d_header_left {
+            position: relative;
+            width: 40%;
+            display: inline-block;
+        }
+        .d_header_left .layui-icon-close-fill{
+            position: absolute;
+            left: 240px;
+            top: 13px;
+            display: none;
+        }
+        .d_btn {
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            font-size: 12px;
+            background: #2c8df1;
+            border-radius: 4px!important;
+            padding: 0 20px;
+            border-width: 0;
+            float: right;
+            margin-right: 15px;
+        }
+
+        .d_serach {
+            height: 35px!important;
+            margin-left: 24px!important;
+            font-size: 14px!important;
+            background: rgb(244, 244, 244)!important;
+            border-radius: 20px!important;
+            -webkit-border-radius: 20px!important;
+            -moz-border-radius:20px!important;
+            -ms-border-radius:20px!important;
+            -o-border-radius:20px!important;
+            border: none!important;
+            padding-left: 40px!important;
+            padding-right: 30px!important;
+            color: #000;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #b3b3b3;
+            font-size: 14px;
+        }
+
+        .d_icon {
+            position: absolute;
+            left: 38px;
+            top: 10px;
+        }
+
+        .d_content {
+            height: 535px;
+        }
+
+        .d_content_header {
+            border-bottom: 1px solid #eee;
+        }
+
+        .d_content_header ul {
+            display: inline-block;
+            padding-left: 10px;
+        }
+
+        .d_content_header ul li {
+            color: #000;
+            font-size: 16px;
+            display: inline-block;
+            margin: 0 10px;
+            padding: 12px 0 12px 0;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+
+        .d_content_header_active {
+            border-bottom: 2px solid rgb(65, 199, 219)!important;
+        }
+
+        .d_header_btn {
+            float: right;
+            margin-right: 15px;
+            margin-top: 7px;
+            border-radius: 4px!important;
+        }
+
+        .d_content_left {
+            display: inline-block;
+            width: 30%;
+            background: rgb(244, 244, 244);
+            height: 477px;
+        }
+
+        .d_content_left ul {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .d_content_left ul:first-child {
+            display: block;
+        }
+
+        .d_content_left ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        .d_content_left ul li {
+            color: #000;
+            font-size: 16px;
+            padding: 8px 0 8px 20px;
+            cursor: pointer;
+        }
+
+        .d_content_active {
+            background: #42c5fa;
+            color: #fff!important;
+        }
+
+        .d_content_right {
+            display: inline-block;
+            width: 70%;
+            float: right;
+            height: 477px;
+        }
+
+        .d_content_right_item {
+            height: 477px;
+            display: none;
+        }
+
+        .d_content_right_item_active {
+            display: block;
+        }
+
+        .d_content_right_item .title {
+            background: #fff;
+            color: #404040;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .d_content_right_item .title:first-child {
+            border-top: none;
+        }
+
+        .d_content_right_item .d_ul {
+            height: 477px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            position: absolute;
+            width: 500px;
+        }
+
+        .d_content_right_item ul .d_li {
+            color: #000 ;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .d_content_right_item ul li ul:last-child {
+            border-bottom: 1px solid #eee;
+        }
+        .d_yuan{
+            color: #000;
+        }
+
+        .layui-form-checkbox[lay-skin="primary"] i {
+            width: 15px;
+            line-height: 15px;
+            border-radius: 4px;
+        }
+
+
+        .d_content_right_item .layui-form-checkbox,.d_content_right_item .layui-form-radio {
+            float: right;
+            margin-top: 1px;
+        }
+
+        .title .layui-form-checkbox {
+            margin-top: 3px;
+        }
+
+        .d_content_right_item .layui-form-radio{
+            margin-top: -1px;
+            padding-right: 0;
+            margin-right: 0;
+        }
+        .d_content_right_item .layui-form-checked[lay-skin=primary] i {
+            background-color: #2c8df1;
+            border: #2c8df1;
+        }
+        input::-webkit-search-decoration,
+        input::-webkit-search-cancel-button {
+            display: none;
+        }
+
+        .close-btn{
+            background: white;
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        jQuery.extend(jQuery.jgrid.defaults, {
+            emptyrecords: "没有更多数据了..."
+        });
+        //全局事件
+        $(document).on('ajaxStart', function(e) {
+            //$utils.waiting();
+        }).on('ajaxSend', function(e) {
+
+        }).on('ajaxBeforeSend', function(e) {}).on('ajaxSuccess', function(e, jqXHR, s, data) {
+            layer.closeAll('loading');
+        }).on('ajaxError', function(e, jqXHR, s, errorData) {
+            layer.closeAll('loading');
+        }).on('ajaxComplete', function(e, jqXHR, s) {
+            layer.closeAll('loading');
+        }).on('ajaxStop', function(e) {
+            layer.closeAll('loading');
+        });
+
+        $.extend({
+            PostJump: function(url, args, isOpenNewTarget) {
+                var form = $("<form method='post'></form>"),
+                    input;
+                form.attr({
+                    "action": url
+                });
+
+                if (typeof(isOpenNewTarget) == 'undefined' || isOpenNewTarget) {
+                    form.attr({
+                        "target": "_blank"
+                    });
+                }
+                $.each(args, function(key, value) {
+                    input = $("<input type='hidden'>");
+                    input.attr({
+                        "name": key
+                    });
+                    input.val(value);
+                    form.append(input);
+                });
+                form.appendTo(document.body);
+                form.submit();
+                document.body.removeChild(form[0]);
+            }
+        });
+
+        function nosure() {
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            parent.layer.close(index);
+        }
+
+        $(document).on('click', '[data-closewin="nosure"]', function(e) {
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            parent.layer.close(index);
+        });
+
+        //返回月的天数
+        function getLastDay(year, month) {
+            var new_year = year; //取当前的年份
+            var new_month = month++; //取下一个月的第一天，方便计算（最后一天不固定）
+            if (month > 12) //如果当前大于12月，则年份转到下一年
+            {
+                new_month -= 12; //月份减
+                new_year++; //年份增
+            }
+            var new_date = new Date(new_year, new_month, 1); //取当年当月中的第一天
+            return (new Date(new_date.getTime() - 1000 * 60 * 60 * 24)).getDate(); //获取当月最后一天日期
+        }
+
+        function last_year_month() {
+            var d = new Date();
+            var result = [];
+            d.setMonth(d.getMonth() + 1, 28);
+            for (var i = 0; i < 12; i++) {
+                d.setMonth(d.getMonth() - 1);
+                var m = d.getMonth() + 1;
+                var n = m
+                m = m < 10 ? "0" + m : m;
+                //在这里可以自定义输出的日期格式
+                result.push({
+                    key: d.getFullYear() + "," + n + ",1",
+                    value: d.getFullYear() + "-" + m
+                });
+            }
+            return result;
+        }
+
+        function getweek() {
+            var k = new Date().getDay();
+            return "日一二三四五六".charAt(k);
+        }
+
+        function Merger(gridName, CellName) {
+            var mya = $("#" + gridName + "").getDataIDs();
+            var length = mya.length;
+            for (var i = 0; i < length; i++) {
+                //从上到下获取一条信息
+                var before = $("#" + gridName + "").jqGrid('getRowData', mya[i]);
+                //定义合并行数
+                var rowSpanTaxCount = 1;
+                for (var j = i + 1; j <= length; j++) {
+                    //和上边的信息对比 如果值一样就合并行数+1 然后设置rowspan 让当前单元格隐藏
+                    var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
+                    if (before[CellName] == end[CellName]) {
+                        rowSpanTaxCount++;
+                        $("#" + gridName + "").setCell(mya[j], CellName, '', {
+                            display: 'none'
+                        });
+                    } else {
+                        rowSpanTaxCount = 1;
+                        break;
+                    }
+                    $("#" + CellName + "" + mya[i] + "").attr("rowspan",
+                        rowSpanTaxCount);
+                }
+            }
+        }
+
+        function updatePagerIcons(table) {
+            var replacement = {
+                'ui-icon-seek-first': 'icon-double-angle-left bigger-140',
+                'ui-icon-seek-prev': 'icon-angle-left bigger-140',
+                'ui-icon-seek-next': 'icon-angle-right bigger-140',
+                'ui-icon-seek-end': 'icon-double-angle-right bigger-140'
+            };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon')
+                .each(
+                    function() {
+                        var icon = $(this);
+                        var $class = $.trim(icon.attr('class').replace(
+                            'ui-icon', ''));
+
+                        if ($class in replacement)
+                            icon.attr('class', 'ui-icon ' +
+                                replacement[$class]);
+                    })
+        }
+
+        function getPostIdList(positionId) {
+            var comId = $("#dataId").val();
+            var positionId = $("#positionId").val();
+            console.log(comId + "positionId" + positionId);
+            $.ajax({
+                type: "POST",
+                url: "/incontrol-manager/common/getDictDataByComId",
+                data: {
+                    "comId": comId,
+                    "classCode": "POST_TYPE_CONTROL",
+                    "parentCode": positionId
+                },
+                datatype: "json",
+                success: function(data) {
+                    console.log(data);
+                    $("#postNatureId").empty();
+                    $('#postNatureId')
+                        .append("<option value='-1'>请选择岗位性质</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $('#postNatureId').append(
+                            "<option value='" + data[i].id + "'>" +
+                            data[i].name + "</option>");
+                    }
+                    layui.use('form', function() {
+                        var form = layui.form; //高版本建议把括号去掉，有的低版本，需要加()
+                        form.render();
+                    });
+                }
+            });
+        }
+
+        function getPostNatureIds(positionId, postNatureId) {
+            var comId = $("#dataId").val();
+            var positionId = $("#positionId").val();
+            console.log(comId + "positionId" + positionId);
+            $.ajax({
+                type: "POST",
+                url: "/incontrol-manager/common/getDictDataByComId",
+                data: {
+                    "comId": comId,
+                    "classCode": "POST_TYPE_CONTROL",
+                    "parentCode": positionId
+                },
+                datatype: "json",
+                success: function(data) {
+                    console.log(data);
+                    $("#postNatureId").empty();
+                    $('#postNatureId')
+                        .append("<option value='-1'>请选择岗位性质</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        if (postNatureId == data[i].id) {
+                            $('#postNatureId').append(
+                                "<option selected='selected' value='" + data[i].id + "'>" +
+                                data[i].name + "</option>");
+                        } else {
+                            $('#postNatureId').append(
+                                "<option value='" + data[i].id + "'>" +
+                                data[i].name + "</option>");
+                        }
+
+                    }
+                    layui.use('form', function() {
+                        var form = layui.form; //高版本建议把括号去掉，有的低版本，需要加()
+                        form.render();
+                    });
+                }
+            });
+        }
+
+        /*creat by sup 公共请求方法   显示菊花  */
+
+        function showLoadding() {
+            layer.load(2, {
+                shade: [0.5, '#fff']
+            });
+        }
+
+        function closeLoadding() {
+            layer.closeAll('loading');
+        }
+        /*creat by sup 公共请求方法    */
+
+        function loadAjax(url, data, callback) {
+            layer.load(2, {
+                shade: [0.5, '#fff']
+            });
+            $.ajax({
+                type: "POST",
+                url: '/incontrol-manager' + url,
+                data: data,
+                dataType: 'json', //接受数据格式 (这里有很多,常用的有html,xml,js,json)
+                success: function(ret) {
+                    layer.closeAll('loading');
+
+
+                    if (null != ret.code && ret.code == 0) {
+                        if (null == ret.msg || ret.msg == '') {
+                            callback(ret);
+                        } else {
+                            $utils.success(ret.msg, function() {
+                                callback(ret);
+                            });
+                        }
+
+                    } else {
+                        $utils.notice(ret.msg);
+                    }
+
+                },
+                error: function(data) {
+                    layer.closeAll('loading');
+
+                }
+            });
+        }
+
+        /*creat by sup 公共请求方法    */
+
+        function loadAjaxGet(url, data, callback) {
+            layer.load(2, {
+                shade: [0.5, '#fff']
+            });
+            $.ajax({
+                type: "GET",
+                url: '/incontrol-manager' + url,
+                dataType: 'json', //接受数据格式 (这里有很多,常用的有html,xml,js,json)
+                data: data,
+                success: function(ret) {
+                    layer.closeAll('loading');
+
+                    if (null != ret.code && ret.code == 0) {
+                        $utils.success(ret.msg, function() {
+                            callback(ret);
+                        });
+                    } else {
+                        $utils.notice(ret.msg);
+                    }
+
+                },
+                error: function(ret) {
+                    layer.closeAll('loading');
+
+                }
+            });
+        }
+
+        // isMuti 0为多选，1为单选
+        //dataUrl 数据请求地址
+
+        function showForDeptPop(comId, userId, isMuti, depts, wards, comId, userId,
+                                isUser) {
+            var isCheckBox = isMuti;
+            layer.open({
+                type: 2,
+                title: false,
+                skin: 'layer-ext-moon', //加上边框
+                area: ['700px', '601px'], //宽高
+                content: '/incontrol-manager/department/showDept?checkBox=' + isCheckBox +
+                    '&url=dataUrl' + '$comId=' + comId + '&userId=' + userId +
+                    '&isUser=1'
+            });
+        }
+
+        function showDeptPop1(comId, userId, isMuti, depts, wards, isUser,
+                              showManageDept) {
+            var isCheckBox = isMuti;
+            layer.open({
+                type: 2,
+                closeBtn: false,
+                title: false,
+                skin: 'layer-ext-moon', //加上边框
+                area: ['700px', '601px'], //宽高
+                content: '/incontrol-manager/department/showDept?checkBox=' + isCheckBox +
+                    '&url=/department/getDeptTrees' + '&depts=' + depts +
+                    '&wards=' + wards + '&comId=' + comId + '&userId=' +
+                    userId + '&isUser=' + isUser + '&showManageDept=' +
+                    showManageDept
+            });
+        }
+        //全部默认值 且不回调
+        function showDeptPop2(isMuti) {
+            var isCheckBox = isMuti;
+            layer.open({
+                type: 2,
+                closeBtn: false,
+                title: false,
+                skin: 'layer-ext-moon', //加上边框
+                area: ['700px', '601px'], //宽高
+                content: '/incontrol-manager/department/showDept?checkBox=' + isCheckBox +
+                    '&url=/department/getDeptTrees' + "&notCallBack=1"
+            });
+        }
+        //全部默认值 且不回调 按需选中项
+        function showDeptPop3(isMuti, wards) {
+            var isCheckBox = isMuti;
+            layer.open({
+                type: 2,
+                closeBtn: false,
+                title: false,
+                skin: 'layer-ext-moon', //加上边框
+                area: ['700px', '601px'], //宽高
+                content: '/incontrol-manager/department/showDept?checkBox=' + isCheckBox +
+                    '&url=/department/getDeptTrees' + "&notCallBack=1" +
+                    '&wards=' + wards
+            });
+        }
+
+        /* 显示悬停提示提示     在元素中添加 onmouseover="showMouseTips(this)" */
+        function showMouseTips(e) {
+            subtips = layer.tips(
+                "<span style='color:black'>" + e.value + "</span>", e, {
+                    tips: [2, 'white'],
+                    time: 30000
+                });
+        }
+        /* 关闭悬停提示     onmouseleave="dissMissTips(this)"*/
+        function dissMissTips(e) {
+            layer.close(subtips);
+        }
+
+        function showImg(fileId) {
+            var img = new Image();
+            img.src = $(this).attr("src");
+            var imgWidth = img.width; //图片实际宽度
+            var imgHeight = img.height; //图片实际宽度
+            if (imgWidth == imgHeight) {
+                imgWidth = '410px';
+                imgHeight = '410px';
+            } else if (imgWidth > imgHeight) {
+                imgWidth = '610px';
+                imgHeight = '410px';
+            } else {
+                imgWidth = '410px';
+                imgHeight = '610px';
+            }
+            console.log(imgWidth + "" + imgHeight);
+            var html = '<img style="width: ' + imgWidth + '; height: ' + imgHeight +
+                ';" src="http://file.gkgzj.com/incontrol-fileserver/file/pic/' + fileId + '"/>';
+            layer.open({
+                title: false,
+                type: 1,
+                shadeClose: true,
+                skin: false, //加上边框
+                area: [imgWidth, imgHeight], //宽高
+                content: html
+            });
+
+        }
+
+        function showDialogTips(title, content, callback) {
+            layer.open({
+                content: content,
+                btn: ['确定', '取消'] //可以无限个按钮
+                ,
+                title: "    " + title,
+                success: function(layer) {
+                    layer[0].childNodes[3].childNodes[0].attributes[0].value = 'layui-layer-btn1';
+                },
+                btn1: function(index, layero) {
+                    callback();
+                    layer.close(index);
+                } //第一个按钮的点击事件
+                ,
+                btn2: function(index, layero) {
+                    layer.close(index);
+                } //第二个按钮的点击事件
+            });
+
+        }
+        function getFileUrl(fileId) {//sup 公共获取图片地址的方法
+            var hostUrl = "http://";
+            hostUrl += location.host;
+            if (hostUrl.match("localhost")) {
+                hostUrl = "http://demo.gkgzj.com"
+            }
+            return hostUrl + "/incontrol-fileserver/file/pic/" + fileId;
+        }
+    </script>
+</head>
+<body>
+<div class="d_container">
+    <div class="d_header">
+        <div class="d_header_left">
+            <!--<i class="layui-icon d_icon">&#xe615;</i>-->
+            <input type="text" class="d_serach" value="请选择科室" readonly="readonly"/>
+        </div>
+  <!--      <button class="d_btn   close-btn">关闭</button>-->
+        <a href="javascript:history.back(-1)" class="d_btn   close-btn"  >关闭</a>
+        <script>window.onbeforeunload = function(){
+            return "Are you sure to leave?" ;
+        }</script>
+
+    </div>
+<!--    <div class="d_content">
+        <div class="d_content_header">
+            <ul class="yuanqu"></ul>
+            <button class="d_btn layui-btn layui-btn-normal d_header_btn sure ">确定</button>
+            <button class="layui-btn layui-btn-warm d_header_btn clearSelect">清除选择</button>
+            <button class="layui-btn layui-btn-primary d_header_btn allSelect">全选</button>
+
+        </div>
+        <div class="d_content_left">
+        </div>
+        <div class="d_content_right">
+            <form class="layui-form" action="">
+                <div class="d_content_right_item d_content_right_item_active">
+                </div>
+            </form>
+        </div>
+    </div>-->
+</div>
+
+<!-- 多级联动菜单 -->
+<ul class="nav">
+    <li><h3>外科</h3>
+        <ul>
+            <li><h3>疼痛.康复医学科</h3></li>
+            <li><h3>骨一</h3></li>
+            <li><h3>骨二</h3></li>
+            <li><h3>普外一</h3></li>
+            <li><h3>普外二</h3></li>
+            <li><h3>外四（神经外科）</h3></li>
+            <li><h3>外五（胸外、泌尿外科）</h3></li>
+            <li><h3>介入室</h3></li>
+        </ul>
+    </li>
+    <li><h3>内科</h3>
+        <ul>
+            <li><h3>内一科（消化内科）</h3></li>
+            <li><h3>内二科（心血管内科）</h3></li>
+            <li><h3>内三科</h3></li>
+            <li><h3>内四科</h3></li>
+            <li><h3>内五科（老年病、内分泌、心身疾病）</h3></li>
+            <li><h3>内六科（神经内科）</h3></li>
+            <li><h3>内七科（肾内科）</h3></li>
+        </ul>
+    </li>
+    <li><h3>其他门诊科室</h3>
+        <ul>
+            <li><h3>儿科</h3></li>
+            <li><h3>综合病区</h3></li>
+            <li><h3>皮肤科</h3></li>
+            <li><h3>口腔科</h3></li>
+            <li><h3>眼科</h3></li>
+            <li><h3>耳鼻喉科</h3></li>
+            <li><h3>门诊外科</h3></li>
+            <li><h3>妇科</h3></li>
+            <li><h3>产科</h3></li>
+            <li><h3>妇产诊疗中心</h3></li>
+            <li><h3>心胸外科</h3></li>
+            <li><h3>麻醉科.手术室</h3></li>
+            <li><h3>麻醉科</h3></li>
+            <li><h3>中医科</h3></li>
+            <li><h3>急诊科</h3></li>
+            <li><h3>重症医学科（ICU）</h3></li>
+            <li><h3>呼吸与危重症医学科</h3></li>
+            <li><h3>健康体检科</h3></li>
+            <li><h3>儿童保健科</h3></li>
+            <li><h3>肿瘤诊疗中心</h3></li>
+            <li><h3>医学美容整形中心</h3></li>
+        </ul>
+    </li>
+    <li><h3>医技科室</h3>
+        <ul>
+            <li><h3>放射科</h3></li>
+            <li><h3>药剂科</h3></li>
+            <li><h3>功能检查科</h3></li>
+            <li><h3>血透室</h3></li>
+            <li><h3>病理科</h3></li>
+            <li><h3>检验科</h3></li>
+            <li><h3>营养科</h3></li>
+            <li><h3>消毒供应中心</h3></li>
+        </ul>
+    </li>
+    <li><h3>其他科室</h3>
+        <ul>
+            <li><h3>院感科</h3></li>
+            <li><h3>院办</h3></li>
+            <li><h3>财务科</h3></li>
+            <li><h3>人事科</h3></li>
+            <li><h3>信息科</h3></li>
+            <li><h3>设备科</h3></li>
+        </ul>
+    </li>
+    <li><h3>其他</h3>
+        <ul>
+            <li><h3>分级诊疗办</h3></li>
+            <li><h3>医养照护</h3></li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

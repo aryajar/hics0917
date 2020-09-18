@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/student.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link rel="stylesheet" href="./css/bootstrap-select.css">
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-select.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function (){
+
+            $("#btn1").click(function (){
+                //创建一个节点
+                //创建tr
+                var $tr=$("<tr></tr>");
+                //创建一个a连接
+                var $bt=$("<td><a>删除</a></td>");
+                var $li1="<td>"+$("#ksssfl").val()+"</td>";
+                var $li2="<td>"+$("#dymc").val()+"</td>";
+                var $li3="<td>"+$("#lcksfl").val()+"</td>";
+                var $li4="<td>"+$("#dylx").val()+"</td>";
+                var $li5="<td>"+$("#ddmcyl").val()+"</td>";
+                //将获取的 ksssfl dymc lcksfl dylx ddmcyl 的值追加到tr中
+                $tr.append($li1,$li2,$li3,$li4,$li5,$bt);
+                //将获取的tr 追加到 table中
+                $('#table1').append($tr);
+                //获取 a 连接的属性   $("a").attr("href","javascript:void(0)")
+                $("a").click(function(){
+                    //定义p1 存储 td
+                    var p1=this.parentNode;
+                    //定义p2  存储 tr
+                    var p2=p1.parentNode;
+                    //移除 tr
+                    $(p2).remove();
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+<form id="form1" method="post" style="text-align:center">
+    <input type="text" id="tjddqk" value="&nbsp;&nbsp;添加督导情况" class="btn btn-2 btn-2f" style="background-color: #a6b8d3;height: 35px" readonly="readonly"><br />
+    <br />
+    快速搜索分类：<input type="text" id="ksssfl" value="" /><br /><br />
+    单元名称：<input type="text" id="dymc" value="" /><br /><br />
+    临床科室分类：<input type="text" id="lcksfl" value="" /><br /><br />
+    单元类型：<input type="text" id="dylx" value="" /><br /><br />
+    督导名称预览：<input type="text" id="ddmcyl" value="" />
+    <br />
+    <br />
+    <input type="button" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" id="btn1" class="btn btn-2 btn-2f"  style="background-color: #a6b8d3;height: 35px"/>
+</form>
+<br />
+<hr color="#99FFFF" /><br />
+<br />
+<table width="800" border="1" align="center" id="table1" style="height: 35px; text-align: center">
+    <tr>
+        <td>快速搜索分类</td>
+        <td>单元名称</td>
+        <td>临床科室分类</td>
+        <td>单元类型</td>
+        <td>督导名称预览</td>
+        <td>操作</td>
+    </tr>
+</table>
+
+</body>
+</html>

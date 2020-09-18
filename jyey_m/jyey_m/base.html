@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/student.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link rel="stylesheet" href="./css/bootstrap-select.css">
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-select.js"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/bootbox.min.js"></script>
+
+</head>
+
+<body>
+<br />
+    <div class="title" style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;医院基础信息管理><small>组织架构单元管理</small></div>
+<!--            <div class="header clearfix">
+                <div class="top fl"><h3>医院基础信息管理><small>组织架构单元管理</small></h3></div>
+            </div>-->
+            <div class="main">
+                <!--基础信息-->
+<!--                <div class="BasicInformation">
+                    <div class="title">
+                        基础信息
+                    </div>
+                </div>-->
+                <!--新插入-->
+                        <div class="layui-input-inline select_input"  style="margin-left: 50px">
+                            <select   id="unitType"  class="selectpicker show-tick"><option value="1" style="font-size: 12px">请选择单元类型</option><option value="2"  style="font-size: 12px">病区/护理单元</option><option value="5"  style="font-size: 12px">门诊诊室</option><option value="4"  style="font-size: 12px">治疗室(中心)</option><option value="1"  style="font-size: 12px">检查/检验/辅助支持科室</option><option value="3"  style="font-size: 12px">行政管理、后勤保障部门</option><option value="6"  style="font-size: 12px">其他</option></select>
+                            &nbsp;&nbsp;
+                            <select name="branch" id="branch"   class="selectpicker show-tick">
+                                <option value="-1"  style="font-size: 12px">请选择院区</option>
+                                <option value="4099905"  style="font-size: 12px">本院</option>
+                            </select>
+                            &nbsp;&nbsp;
+                            <input type="text" lay-skin="primary" id="unitName" placeholder="请输入单元名称关键字" autocomplete="off" class="layui-input" style="height: 33px; width: 160px">
+                                &nbsp;
+                                <button class="btn btn-2 btn-2f"  style="background-color: #a6b8d3;" id="search" lay-submit="" lay-filter="search">查询</button>
+                                &nbsp;
+                                <!--<button class="layui-btn layui-btn-gray" id="import">批量导入</button>
+        <button class="layui-btn layui-btn-gray" id="export">导出</button>-->
+                                <input id="hides" type="hidden" value="">
+                                <button onclick="tz()" class="btn btn-2 btn-2f"  style="background-color: #a6b8d3;">添加单元</button>
+                            <script>
+                                function tz(){
+                                    window.location.href='tjdy.html';
+                                }
+                            </script>
+                            <a class="sldyqx" style="color: #0000ff;"><small>示例</small></a>&nbsp;
+                        </div>
+                        <div>&nbsp;&nbsp;</div>
+                        <div class="layui-input-inline pull-lift"  style="margin-left: 50px">
+
+                        <button class="btn btn-2 btn-2f" style="background-color: #a6b8d3;" value="
+												扫码学习或考试时新建单元权限：设置是否对除感控主任和管理员之外的用户开放在扫码学习或考试时新建单元权限。"
+                                id="toSetting" onmouseover="showMouseTips(this)" onmouseleave="dissMissTips(this)">&nbsp;开放新建单元权限&nbsp;</button>
+                        <button class="btn btn-2 btn-2f"  style="background-color: #a6b8d3;">设置临床科室分类</button>
+                        <button class="btn btn-2 btn-2f"  style="background-color: #a6b8d3;">设置快速搜索标签</button>
+                        </div>
+                <div>&nbsp;&nbsp;</div>
+                <table  width="800" border="1" align="center" id="table1" style="height: 35px; text-align: center; margin-left: 50px">
+                    <tr>
+                        <td>快速搜索分类</td>
+                        <td>单元名称</td>
+                        <td>临床科室分类</td>
+                        <td>单元类型</td>
+                        <td>督导名称预览</td>
+                        <td>操作</td>
+                    </tr>
+                </table>
+
+<!--                <div>
+                    <script>
+                    $("#button").click(function(){
+
+                    $("table").append("<tr><td></td></tr>");
+                    }
+                    </script>
+                </div>-->
+                 </div>
+
+
+    <!--                        <div class="label">
+                                <label for="">独生子女：</label>
+                                <div class="option clearfix" id="child">
+                                    <a href="javascript:;" class="fl">是</a>
+                                    <i class="fr"></i>
+                                    <ul>
+                                        <li>是</li>
+                                        <li>否</li>
+                                    </ul>
+                                </div>
+                            </div>-->
+
+</body>
+</html>
