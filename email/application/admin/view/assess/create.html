@@ -1,0 +1,329 @@
+{layout name="layout"}
+<section class="content-header">
+    <h1>
+        数据概况
+        <small>手卫生检查</small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" method="post" class="layui-form">
+                    <div class="box-body">
+
+                        <div class="layui-form-item" style="text-align: center;font-weight:bold;font-size:20px">手卫生检查情况</div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">科室选择：</label>
+                            <div class="layui-input-inline">
+                                <select name="yard" id="yard" lay-filter='yard'>
+                                    <option value="">请选择一级科室</option>
+                                    {volist name="$yards" id="yard"}
+                                    <option value="{$yard.id}">{$yard.name}
+                                    </option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="system" id="system">
+                                    <option value="">请选择二级科室</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="i_post" id="i_post">
+                                    <option value="">请选择岗位</option>
+                                    {volist name="$i_posts" id="i_post"}
+                                    <option value="{$i_post.id}">{$i_post.name}
+                                    </option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">检查类型：</label>
+                            <div class="layui-input-inline">
+                                <select name="internship_type" id="internship_type">
+                                    <option value="抽查">抽查</option>
+                                    <option value="自查">自查</option>
+                                    <option value="自查">暗访</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">手卫生次数：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="form-control" placeholder="" id="base_type">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">时机数：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="form-control" placeholder="" id="volume">
+                            </div>
+                        </div>
+
+<!--                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">是否有人指导：</label>
+                            &lt;!&ndash;<div class="layui-input-inline">&ndash;&gt;
+                                <input type="radio" name="has_guide" value="1" checked>有
+                                <input type="radio" name="has_guide" value="2">无
+                            &lt;!&ndash;</div>&ndash;&gt;
+                        </div>-->
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">正确数：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="form-control" placeholder="" id="count">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">检查周期：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="time">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">观察日期：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="date">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">备注：</label>
+                            <div class="layui-col-md9">
+                                <textarea id="content" name="content" style="display: none;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 180px;font-weight:bold;">评价指标：</label><br>
+                            <div class="layui-col-md9">
+                                <span>接触患者前<br>
+                                    （1）洗手是否规范：</span>
+                                <input type="radio" name="status_one" value="1" checked>是
+                                <input type="radio" name="status_one" value="2">否<br>
+                                <span>（2）卫生手消毒是否规范：</span>
+                                <input type="radio" name="status_one" value="1" checked>是
+                                <input type="radio" name="status_one" value="2">否<br>
+                                <span>（3）未采取措施：</span>
+                                <!--<input type="radio" name="status_three" value="1" checked>是-->
+                                <input type="radio" name="status_one" value="2">是<br>
+                                <span>（4）未采取措施-戴手套：</span>
+                                <!--<input type="radio" name="status_one" value="1" checked>是-->
+                                <input type="radio" name="status_one" value="2">是<br>
+                                <span>清洁/无菌操作前：<br>
+                                      （1）洗手是否规范：</span>
+                                <input type="radio" name="status_two" value="1" checked>是
+                                <input type="radio" name="status_two" value="2">否<br>
+                                <span>（2）卫生手消毒是否规范：</span>
+                                <input type="radio" name="status_two" value="1" checked>是
+                                <input type="radio" name="status_two" value="2">否<br>
+                                <span>（3）未采取措施：</span>
+                                <!--<input type="radio" name="status_three" value="1" checked>是-->
+                                <input type="radio" name="status_two" value="2">是<br>
+                                <span>（4）未采取措施-戴手套：</span>
+                                <!--<input type="radio" name="status_one" value="1" checked>是-->
+                                <input type="radio" name="status_two" value="2">是<br>
+                                <span>暴露患者体液风险后：
+                                      （1）洗手是否规范：</span>
+                                <input type="radio" name="status_three" value="1" checked>是
+                                <input type="radio" name="status_three" value="2">否<br>
+                                <span>（2）卫生手消毒是否规范：</span>
+                                <input type="radio" name="status_three" value="1" checked>是
+                                <input type="radio" name="status_three" value="2">否<br>
+                                <span>（3）未采取措施：</span>
+                                <!--<input type="radio" name="status_three" value="1" checked>是-->
+                                <input type="radio" name="status_three" value="2">是<br>
+                                <span>（4）未采取措施-戴手套：</span>
+                                <!--<input type="radio" name="status_one" value="1" checked>是-->
+                                <input type="radio" name="status_three" value="2">是<br>
+<!--                                <span>（13）10分 是否有不按规定迟到早退或旷工的行为：</span>
+                                <input type="radio" name="status_thirteen" value="1" checked>是
+                                <input type="radio" name="status_thirteen" value="2">否<br>-->
+                                <span>接触患者后：
+                                      （1）洗手是否规范：</span>
+                                <input type="radio" name="status_four" value="1" checked>是
+                                <input type="radio" name="status_four" value="2">否<br>
+                                <span>（2）卫生手消毒是否规范：</span>
+                                <input type="radio" name="status_four" value="1" checked>是
+                                <input type="radio" name="status_four" value="2">否<br>
+                                <span>（3）未采取措施：</span>
+                                <!--<input type="radio" name="status_three" value="1" checked>是-->
+                                <input type="radio" name="status_four" value="2">是<br>
+                                <span>（4）未采取措施-戴手套：</span>
+                                <!--<input type="radio" name="status_one" value="1" checked>是-->
+                                <input type="radio" name="status_four" value="2">是<br>
+                                <span>接触患者周边环境后：
+                                      （1）洗手是否规范：</span>
+                                <input type="radio" name="status_five" value="1" checked>是
+                                <input type="radio" name="status_five" value="2">否<br>
+                                <span>（2）卫生手消毒是否规范：</span>
+                                <input type="radio" name="status_five" value="1" checked>是
+                                <input type="radio" name="status_five" value="2">否<br>
+                                <span>（3）未采取措施：</span>
+                                <!--<input type="radio" name="status_three" value="1" checked>是-->
+                                <input type="radio" name="status_five" value="2">是<br>
+                                <span>（4）未采取措施-戴手套：</span>
+                                <!--<input type="radio" name="status_one" value="1" checked>是-->
+                                <input type="radio" name="status_five" value="2">是<br>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item" style="text-align: center;">
+                            <button type="submit" class="layui-btn submitDate">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- 配置文件 -->
+{js href="/static/ueditor/ueditor.config.js" /}
+{js href="/static/layui/layui.js" /}
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+
+
+    layui.use(['element', 'form', 'laydate', 'laypage', 'layer', 'laytpl', 'layedit'], function() {
+        var element = layui.element;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var laypage = layui.laypage;
+        var layer = layui.layer;
+        var laytpl = layui.laytpl;
+        var layedit = layui.layedit;
+
+        var index = layedit.build('content'); //建立编辑器
+
+        //选择日期
+        laydate.render({
+            elem: '#date' //指定元素
+        });
+
+        laydate.render({
+            elem: '#time'
+            ,range: true
+        });
+
+        //科室联动
+        form.on('select(yard)', function(data){
+            var yardId=data.elem.value;
+            $.post('system',{
+                yardId:yardId
+            },function (result) {
+                html = "<option value='0'>请选择二级科室</option>";
+                $(result).each(function (i) {
+                    html +="<option value='"+this.id+"'>"+this.name+"</option>"
+                });
+                $('#system').html(html);
+                form.render('select'); //这个很重要
+            });
+        });
+
+        //添加 编辑
+        $(document).on('click','.submitDate',function(){
+            var yard = $("#yard").find("option:selected").val();
+            var system = $("#system").find("option:selected").val();
+            var internship_type = $("#internship_type").find("option:selected").val();
+            var base_type = $("#base_type").val();
+            var volume = $("#volume").val();
+            var has_guide = $("input[name=has_guide]:checked").val();
+            var count = $("#count").val();
+            var time = $('#time').val();
+            var starttime = time.substring(0,11);
+            var endtime = time.substring(12);
+            var date = $('#date').val();
+            var content = layedit.getContent(index);
+            var status_one = $("input[name=status_one]:checked").val();
+            var status_two = $("input[name=status_two]:checked").val();
+            var status_three = $("input[name=status_three]:checked").val();
+            var status_four = $("input[name=status_four]:checked").val();
+            var status_five = $("input[name=status_five]:checked").val();
+            var status_six = $("input[name=status_six]:checked").val();
+            var status_seven = $("input[name=status_seven]:checked").val();
+            var status_eight = $("input[name=status_eight]:checked").val();
+            var status_nine = $("input[name=status_nine]:checked").val();
+            var status_ten = $("input[name=status_ten]:checked").val();
+            var status_eleven = $("input[name=status_eleven]:checked").val();
+            var status_twelve = $("input[name=status_twelve]:checked").val();
+            var status_thirteen = $("input[name=status_thirteen]:checked").val();//six-thirteen没用到
+
+            var stt = starttime.replace('-', '/');
+            var st = new Date(stt).getTime();
+            var ett = endtime.replace('-', '/');
+            var et = new Date(ett).getTime();
+            var dtt = date.replace('-', '/');
+            var dt = new Date(dtt).getTime();
+            if(st > dt || et < dt){
+                alert("观察日期应在检查周期区间内");
+            }
+
+            var param = {
+                yard: yard,
+                system: system,
+                internship_type: internship_type,
+                volume: volume,
+                base_type: base_type,
+                has_guide: has_guide,
+                count: count,
+                time: time,
+                starttime: starttime,
+                endtime: endtime,
+                date: date,
+                content: content,
+                status_one: status_one,
+                status_two: status_two,
+                status_three: status_three,
+                status_four: status_four,
+                status_five: status_five,
+                status_six: status_six,
+                status_seven: status_seven,
+                status_eight: status_eight,
+                status_nine: status_nine,
+                status_ten: status_ten,
+                status_eleven: status_eleven,
+                status_twelve: status_twelve,
+                status_thirteen: status_thirteen
+                //six-thirteen没用到
+            };
+
+            var str11 = JSON.stringify(param);
+            console.log(str11);
+            $.post('save', param).then(function (resp) {
+                var str = JSON.stringify(resp);
+                console.log(str);
+                if(resp.code == 200){
+                    alert(resp.msg);
+                    history.go(0);
+                }else{
+                    alert(resp.msg);
+                    history.go(0);
+                }
+            });
+
+        })
+
+    })
+
+</script>
+
+<style type="text/css">
+
+
+</style>

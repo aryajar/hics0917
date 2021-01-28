@@ -1,0 +1,52 @@
+﻿#scroll-table{
+    border-right:solid 1px #ddd
+}
+.table-title-container{
+    width:100%;
+    text-align:center;
+    overflow-x:auto
+}
+.table-title-container
+.table-title{
+    width:130px;
+    text-align:left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    float:left;
+    border:1px solid #ddd;
+    padding:2px 8px
+}
+.table-title-container
+.table-sort{
+    width:70px;
+    float:left;
+    border:1px solid #ddd;
+    padding:2px 8px}
+.table-title-scroll{
+    overflow-x:auto
+}
+.table-title-scroll-container div{
+    width:60px;
+    float:left;
+    border:1px solid #ddd;
+    padding:2px 8px
+}
+#table-content-container-mark{
+    overflow:hidden;position:relative;background:#fff;margin-top:-17px;border-bottom:1px solid #ddd
+}
+.table-content-container{
+    overflow-y:auto;position:absolute;left:0
+}
+.table-content-container::-webkit-scrollbar{display:none}
+.table-sort-container{text-align:center;float:left}
+.table-sort-container div{width:70px;border:1px solid #ddd;padding:2px 8px}
+.table-column-title-container{text-align:center;float:left}
+.table-column-title-container div{width:130px;border:1px solid #ddd;padding:2px 8px;text-align:left}
+.table-body-container{overflow-x:auto;text-align:center}
+.table-body-container table{width:auto;float:left}
+.table-body-container
+.table-title{width:180px;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.table-body-container td{width:50px;float:left;border:1px solid #ddd;padding:2px 8px}
+.table-scroll-mark{background:#eee;border:1px solid #ddd;border-image:none;height:19px;margin-top:-17px;position:relative}
+.table-scroll{height:17px;margin-left:228px;position:absolute;overflow-x:auto}

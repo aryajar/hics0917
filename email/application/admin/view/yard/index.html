@@ -1,0 +1,165 @@
+{layout name="layout"}
+<head>
+    <meta charset="UTF-8"></head>
+<section class="content-header">
+    <h1>
+        日记管理
+        <small>日记列表</small>
+    </h1>
+</section>
+<!-- Main content -->
+    <div class="content">
+        <div class="content-area">
+            <div class="layui-row" style="margin-top: 25px;">
+                <div class="layui-form">
+
+                    <div class="layui-col-md6">
+                        <label class="layui-form-label" >院系选择：</label>
+                        <div class="layui-input-inline">
+                            <select name="yard" id="yard" lay-filter='yard'>
+                                <option value="">请选择院</option>
+                                {volist name="$yards" id="yard"}
+                                <option value="{$yard.id}">{$yard.name}
+                                </option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="system" id="system">
+                                <option value="">请选择系</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md3" style="text-align: right">
+                        <label class="layui-inline" >学生姓名：</label>
+                        <div class="layui-input-inline" style="margin-left: -4px; margin-top: -1px;">
+                            <input type="text" class="layui-input search-text" id="stu_name">
+                        </div>
+                        <div class="layui-input-inline">
+                            <a href="javascript:;" class="layui-btn search-btn" id="search">搜索</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <table class="layui-table" id="dataList">
+                <thead>
+                <tr>
+                    <th>院</th>
+                    <th>系</th>
+                    <th>学生姓名</th>
+                    <th>实习类型</th>
+                    <th>实习基地</th>
+                    <th>实习基地容纳量</th>
+                    <th>是否有人指导</th>
+                    <th>一个人指导几个学生</th>
+                    <th>实习开始时间</th>
+                    <th>实习结束时间</th>
+                    <th>日记日期</th>
+                    <th>实习日记内容</th>
+                    <th>评价分数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="registerList">
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{js href="/static/layui/layui.js" /}
+
+<script type="text/javascript">
+
+
+    layui.use(['element', 'form', 'laydate', 'laypage', 'layer', 'laytpl', 'layedit'], function() {
+        var element = layui.element;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var laypage = layui.laypage;
+        var layer = layui.layer;
+        var laytpl = layui.laytpl;
+        var layedit = layui.layedit;
+
+        //院系联动
+        form.on('select(yard)', function(data){
+            var yardId=data.elem.value;
+            $.post('system',{
+                yardId:yardId
+            },function (result) {
+                html = "<option value='0'>请选择系</option>";
+                $(result).each(function (i) {
+                    html +="<option value='"+this.id+"'>"+this.name+"</option>"
+                });
+                $('#system').html(html);
+                form.render('select'); //这个很重要
+            });
+        });
+
+        //删除
+        $(document).on('click', '.del-btn', function () {
+            var id = document.getElementById('data_id').innerHTML;
+            $.post('del', {
+                'id' : id
+            }).then(function (resp) {
+                console.log(resp);
+                alert("删除成功");
+
+            });
+        });
+
+        sellerList();
+
+        function sellerList(){
+            var yard = $("#yard").find("option:selected").val();
+            var system = $("#system").find("option:selected").val();
+            var stu_name = $("#stu_name").val();
+            $.post('indexList', {
+                'yard_id' : yard,
+                'system_id' : system,
+                'stu_name' : stu_name
+            }).then(function (resp) {
+                var str = JSON.stringify(resp);
+                console.log(str);
+                var html = "";
+                $(resp).each(function (i) {
+                    html += "<tr>";
+                    html +="<td>"+this.yard_name+"</td>";
+                    html +="<td>"+this.system_name+"</td>";
+                    html +="<td>"+this.stu_name+"</td>";
+                    html +="<td>"+this.internship_type+"</td>";
+                    html +="<td>"+this.base_type+"</td>";
+                    html +="<td>"+this.volume+"</td>";
+                    if(this.has_guide == 1){
+                        html +="<td>是</td>";
+                    }else{
+                        html +="<td>否</td>";
+                    }
+                    html +="<td>"+this.count+"</td>";
+                    html +="<td>"+this.starttime+"</td>";
+                    html +="<td>"+this.endtime+"</td>";
+                    html +="<td>"+this.date+"</td>";
+                    html +="<td>"+this.content+"</td>";
+                    html +="<td>"+this.score+"</td>";
+                    html +='<td><span id="data_id" style="display: none;">'+this.id+'</span>';
+                    // html +='<a href="{:url(\'admin/Assess/read\', [\'id\' => 13])}">' ;
+                    html +='<a href="./get/'+this.id+'.html">' ;
+                    html +='<span style="color: #f39c12;">详情</span></a><br><a href="" class="del-btn"><span style="color: #dd4b39;" >删除</span></a></td>';
+                    html += "</tr>";
+                });
+                $('#registerList').html(html);
+                form.render();
+
+            });
+        }
+
+        $(document).on('click', '#search', function () {
+            sellerList();
+        })
+
+    })
+</script>
+
