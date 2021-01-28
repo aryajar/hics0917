@@ -1,9 +1,0 @@
-runtime/
-thinkphp/
-vendor/
-.env
-.idea/
-sftp-config.json
-ueditor/*
-uploads/*
-thumb/*
