@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2019-11-19T05:52:18+00:00 ] 127.0.0.1 GET dev.email.com/
+[运行时间：0.071448s] [吞吐率：14.00req/s] [内存消耗：381.24kb] [文件加载：18]
+[ error ] [8]Constant ROOT_PATH already defined[E:\PHP\web\phpemail\public\index.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-19T05:53:42+00:00 ] 127.0.0.1 GET dev.email.com/
+[运行时间：0.007910s] [吞吐率：126.42req/s] [内存消耗：381.10kb] [文件加载：18]
+[ error ] [8]Constant ROOT_PATH already defined[E:\PHP\web\phpemail\public\index.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-19T05:54:32+00:00 ] 127.0.0.1 GET dev.email.com/
+[运行时间：0.008242s] [吞吐率：121.33req/s] [内存消耗：381.23kb] [文件加载：18]
+[ error ] [8]Constant ROOT_PATH already defined[E:\PHP\web\phpemail\public\index.php:18]
+[ info ] [ LOG ] INIT File

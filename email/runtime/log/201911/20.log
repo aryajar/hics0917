@@ -1,0 +1,111 @@
+---------------------------------------------------------------
+[ 2019-11-20T02:59:37+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.149524s][吞吐率：6.69req/s] [内存消耗：212.16kb] [文件加载：23]
+[ error ] [8192]Non-static method think\Env::get() should not be called statically[E:\PHP\web\phpemail\config\app.php:24]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:27:04+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.136514s][吞吐率：7.33req/s] [内存消耗：212.17kb] [文件加载：23]
+[ error ] [8192]Non-static method think\Env::get() should not be called statically[E:\PHP\web\phpemail\config\app.php:24]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:28:24+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.098965s][吞吐率：10.10req/s] [内存消耗：209.82kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:04+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007476s][吞吐率：133.76req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:06+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007982s][吞吐率：125.28req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:06+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007107s][吞吐率：140.71req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:07+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007811s][吞吐率：128.02req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:07+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007737s][吞吐率：129.25req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:07+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007536s][吞吐率：132.69req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:15+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.008112s][吞吐率：123.27req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:29:16+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.018124s][吞吐率：55.18req/s] [内存消耗：209.80kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:30:03+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007870s][吞吐率：127.07req/s] [内存消耗：208.75kb] [文件加载：24]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:30:12+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007473s][吞吐率：133.82req/s] [内存消耗：208.75kb] [文件加载：24]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:30:13+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.008637s][吞吐率：115.78req/s] [内存消耗：208.75kb] [文件加载：24]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T06:30:13+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.007378s][吞吐率：135.54req/s] [内存消耗：208.75kb] [文件加载：24]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:08:12+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.009012s][吞吐率：110.96req/s] [内存消耗：208.56kb] [文件加载：24]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:17:46+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.032939s][吞吐率：30.36req/s] [内存消耗：211.98kb] [文件加载：23]
+[ error ] [8192]Non-static method think\Env::get() should not be called statically[E:\PHP\web\phpemail\config\app.php:25]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:17:58+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.008912s][吞吐率：112.21req/s] [内存消耗：209.61kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:22:39+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.008134s][吞吐率：122.94req/s] [内存消耗：209.61kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:22:41+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.008484s][吞吐率：117.87req/s] [内存消耗：209.61kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:23:45+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.008267s][吞吐率：120.96req/s] [内存消耗：209.61kb] [文件加载：25]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-20T07:27:02+00:00 ] 127.0.0.1 GET /
+[ info ] dev.email.com/ [运行时间：0.245059s][吞吐率：4.08req/s] [内存消耗：482.16kb] [文件加载：33]
+[ error ] [0]Fatal error: Call to undefined function env()[E:\PHP\web\phpemail\config\console.php:19]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
